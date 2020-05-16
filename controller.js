@@ -8,6 +8,10 @@ service.initServer();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+    res.send('The API in ON!');
+});
+
 app.post('/institution/create', (req, res) => {
     if (req.body.login != null) {
         service.checkLogin(req.body.login).then((exists) => {
@@ -70,4 +74,4 @@ app.post('/institution/get', (req, res) => {
 });
 
 //start listening the server
-app.listen(3000);
+app.listen(process.env.PORT);

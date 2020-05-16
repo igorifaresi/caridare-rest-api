@@ -152,9 +152,15 @@ module.exports.queryInstitutions = async function(obj) {
                 };
         }
         //TODO add instant necessities search and coordinates and other params
-        return (await InstitutionModel.find(query));
+        return (await InstitutionModel.find(
+                query,
+                'num name description necessities created lastPush instantNecessities'
+        ));
 }
 
 module.exports.getInstitutionByNumber = async function(num) {
-        return (await InstitutionModel.findOne({ "num" : num }));
+        return (await InstitutionModel.findOne(
+                { "num" : num },
+                'num name description necessities created lastPush instantNecessities'
+        ));
 }
